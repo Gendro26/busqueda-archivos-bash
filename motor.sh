@@ -10,8 +10,8 @@ buscar_archivos() {
     while IFS= read -r -d '' archivo; do
         if grep -F -q -I -- "$palabra" "$archivo"; then
             encontrados=$((encontrados + 1))
-            echo "Coincidencia encontrada en: $archivo"
-        fi
+                    procesar_archivo "$archivo" "$palabra"
+fi
     done < <(find "$directorio" -type f -print0)
 
     if [ "$encontrados" -eq 0 ]; then

@@ -1,6 +1,10 @@
 #!/bin/bash
 
-# Validar que se reciban exactamente dos argumentos
+# Cargar los módulos del programa
+source "$(dirname "$0")/formato.sh"
+source "$(dirname "$0")/motor.sh"
+
+# Módulo 1: Validación de entrada
 validar_entrada() {
     if [ "$#" -ne 2 ]; then
         echo "Uso: $0 \"palabra o frase\" \"directorio\""
@@ -18,6 +22,12 @@ validar_entrada() {
     fi
 
     return 0
-} 
+}
+
+# Ejecutar el programa
 validar_entrada "$@" || exit 1
-echo "Validación correcta."
+
+palabra="$1"
+directorio="$2"
+
+buscar_archivos "$palabra" "$directorio"
