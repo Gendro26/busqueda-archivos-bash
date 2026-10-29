@@ -18,4 +18,6 @@ validar_entrada() {
     fi
 
     return 0
-}
+} 
+validar_entrada "$@" || exit 1
+echo "Validación correcta."
